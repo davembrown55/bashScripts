@@ -132,6 +132,17 @@ done
 #cat "$debug_file"
 
 
+###
 
 
 
+# Print lines of code that appear in the procedure division
+echo "Lines of code in procedure division (in .cob files): " >> "$outputFile"
+grep -an "$stringToSearch" "${seenInProcDivOnly[@]}" | grep -vE ' 05 | 04 | 02 | 03 ' | sed "s|$DLACSCobolPath||g" >> "$outputFile"
+
+echo >>  "$outputFile"
+
+for file in "${seenInProcDivOnly[@]}"; do
+	grep -an "$stringToSearch" $file | grep -vE ' 05 | 04 | 02 | 03 ' >> "$outputFile"
+	echo >> "$outputFile"
+done
