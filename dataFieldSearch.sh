@@ -99,7 +99,6 @@ for file in "${seen[@]}"; do
 	#file="${seen[$i]}"
     if grep -a "$stringToSearch" "$file" | grep -vqE ' 06 | 05 | 04 | 03 | 02 | 01 '; then
 		filename=$(basename "$file")  # Extracts the filename from the full path
-		# name="$filename"         # Extracts the base name (without extension)
 		name="${filename%.*}"    # Extracts the base name (without extension)
 		
 		#((uniqueModsProcDivOnly_count++)) 
